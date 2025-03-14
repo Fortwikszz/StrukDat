@@ -1,5 +1,6 @@
 n = str(input())
 parent = []
+valid = 0
 
 pair = {"(":")",
         "[":"]",
@@ -12,13 +13,18 @@ for i in range(len(n)):
         parent.append(n[i])
     else:
         if len(parent) == 0:
-            print("NO")
+            valid = 0
             break
         elif pair[parent[-1]] == n[i]:
             parent.pop()
         else:
-            print("NO")
+            valid = 0
             break
 
-if len(parent) == 0:
+    if len(parent) == 0 and i == len(n)-1:
+        valid = 1
+
+if valid == 0:
+    print("NO")
+else:
     print("YES")
